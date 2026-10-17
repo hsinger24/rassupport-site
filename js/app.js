@@ -32,10 +32,13 @@
     list.forEach(function(x){ if(!firstOpen && !done[seg+'-'+x.id]) firstOpen = x.id; });
     $('homeWhen').textContent = seg === 'am' ? 'This morning' : 'This evening';
     $('homeCount').textContent = n + ' of ' + list.length;
+    $('homeBar').style.width = Math.round(100 * n / list.length) + '%';
+    $('homeCta').textContent = n === 0 ? 'Start routine' : (n < list.length ? 'Continue routine' : 'Routine done');
     chips.forEach(function(c){
       var id = c.getAttribute('data-step');
       c.hidden = !list.some(function(x){ return x.id === id; });
       c.classList.toggle('next', id === firstOpen);
+      c.classList.toggle('done', !!done[seg+'-'+id]);
     });
   }
 
@@ -85,7 +88,7 @@
   function enterRoutine(){
     steps = skin(seg);
     dotsEl.innerHTML = steps.map(function(){ return '<i></i>'; }).join('');
-    var start = 0;
+    var start = steps.length;
     for(var k = 0; k < steps.length; k++){ if(!done[seg+'-'+steps[k].id]){ start = k; break; } }
     setStep(start);
   }
@@ -95,6 +98,11 @@
     $('stepView').hidden = fin; $('doneView').hidden = !fin;
     $('stepCount').textContent = fin ? 'Routine complete' : 'Step ' + (si+1) + ' of ' + steps.length;
     toArr(dotsEl.children).forEach(function(d, k){ d.className = k <= si ? 'on' : ''; });
+    if(fin){
+      var bc = $('bigCheck'); bc.classList.remove('go'); void bc.offsetWidth; bc.classList.add('go');
+    } else {
+      $('stepWrap').className = 'step-wrap a' + (si + 1);
+    }
     if(!fin){
       var s = steps[si];
       $('stepImg').src = s.img; $('stepImg').alt = s.alt;

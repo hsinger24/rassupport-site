@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..600,0..100&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <link rel="stylesheet" href="css/site.css">
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -88,15 +88,16 @@
       <span class="chip" data-step="moist"><img src="img/moisturizer.jpg" alt="Moisturizer" style="width:2.4rem;height:2.4rem"></span>
       <span class="chip" data-step="spf"><img class="s" src="img/sunscreen.jpg" alt="Sunscreen"></span>
     </div>
-    <a class="btn light" href="#routine">Start routine <svg class="ic"><use href="#i-arrow"/></svg></a>
+    <div class="bar-track" aria-hidden="true"><i id="homeBar"></i></div>
+    <a class="btn light" href="#routine"><span id="homeCta">Start routine</span> <svg class="ic"><use href="#i-arrow"/></svg></a>
   </div>
   <div class="group">
     <span class="eyebrow">Symptoms</span>
     <div class="tiles">
-      <a class="tile" href="#mouth"><img src="img/dexamethasone.jpg" alt="">Mouth sores</a>
-      <a class="tile" href="#nausea"><img src="img/ondansetron.jpg" alt="">Nausea</a>
-      <a class="tile" href="#diarrhea"><img src="img/loperamide.jpg" alt="">Diarrhea</a>
-      <a class="tile warn" href="#call"><svg class="ic"><use href="#i-phone"/></svg>Call care team</a>
+      <a class="tile" href="#mouth"><span class="pic"><img src="img/dexamethasone.jpg" alt=""><span class="cshadow"></span></span><span><b>Mouth sores</b><small>Rinse and lozenge</small></span></a>
+      <a class="tile" href="#nausea"><span class="pic"><img src="img/ondansetron.jpg" alt=""><span class="cshadow"></span></span><span><b>Nausea</b><small>Ondansetron</small></span></a>
+      <a class="tile" href="#diarrhea"><span class="pic"><img src="img/loperamide.jpg" alt=""><span class="cshadow"></span></span><span><b>Diarrhea</b><small>Loperamide</small></span></a>
+      <a class="tile warn" href="#call"><svg class="ic"><use href="#i-phone"/></svg><span><b>Call care team</b><small>Day or night</small></span></a>
     </div>
   </div>
   <a class="row" href="#caregivers"><svg class="ic"><use href="#i-hands"/></svg>For family and caregivers<svg class="ic chev"><use href="#i-chev"/></svg></a>
@@ -115,7 +116,8 @@
   </div>
 
   <div id="stepView" style="display:contents">
-    <div class="stage"><img id="stepImg" src="" alt=""><button class="vid" type="button" aria-disabled="true" aria-label="How-to video, coming soon"><svg class="ic"><use href="#i-play"/></svg>Video coming soon</button></div>
+   <div class="step-wrap" id="stepWrap">
+    <div class="stage"><img id="stepImg" src="" alt=""><span class="cshadow"></span><button class="vid" type="button" aria-disabled="true" aria-label="How-to video, coming soon"><svg class="ic"><use href="#i-play"/></svg>Video coming soon</button></div>
     <div class="step-text">
       <div class="stepline"><span class="num" id="stepNum">1</span><span class="eyebrow" id="stepKind">Antiseptic spray</span></div>
       <h1 id="stepName">Hypochlorous spray</h1>
@@ -129,16 +131,17 @@
       <button class="btn" type="button" id="nextBtn">Done, next step</button>
       <button class="btn quiet" type="button" id="backBtn">Back</button>
     </div>
+   </div>
   </div>
 
   <div id="doneView" hidden style="display:contents">
     <div class="done-wrap">
-      <span class="big-check"><svg class="ic"><use href="#i-check"/></svg></span>
+      <span class="big-check" id="bigCheck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
       <h1>Skin routine done.</h1>
       <p class="lead" id="doneNote">Again this evening. Using it every day prevents flares.</p>
     </div>
     <div class="pillcard">
-      <span class="ph sm"><img src="img/doxycycline.jpg" alt="Doxycycline pill bottle"></span>
+      <span class="ph sm"><img src="img/doxycycline.jpg" alt="Doxycycline pill bottle"><span class="cshadow"></span></span>
       <span class="t"><span class="eyebrow">One more thing</span><b>Your antibiotic pill</b><span>Doxycycline or minocycline. Swallow, twice a day.</span></span>
     </div>
     <div class="actions">
@@ -155,7 +158,7 @@
     <span class="eyebrow" id="segLabel">Morning</span>
   </div>
   <div class="stack">
-    <div class="card ringcard">
+    <div class="card ink ringcard">
       <div class="ring">
         <svg viewBox="0 0 96 96" aria-hidden="true">
           <circle class="trk" cx="48" cy="48" r="41" fill="none" stroke-width="9"/>
@@ -184,12 +187,12 @@
   </div>
   <div class="stack">
     <div class="plan">
-      <div class="medhead"><span class="ph xs"><img src="img/dexamethasone.jpg" alt="Dexamethasone oral solution bottle"></span><span><b>Dexamethasone rinse</b><small>Solution</small></span></div>
+      <div class="medhead"><span class="ph xs"><img src="img/dexamethasone.jpg" alt="Dexamethasone oral solution bottle"><span class="cshadow"></span></span><span><b>Dexamethasone rinse</b><small>Solution</small></span></div>
       <div class="r"><span class="big acc">10 mL</span><span>swish for 2 minutes, then spit it out</span></div>
       <div class="r"><span class="big">3×<small>a day</small></span><span>only if you have mouth sores</span></div>
     </div>
     <div class="plan">
-      <div class="medhead"><span class="ph xs"><img src="img/clotrimazole.jpg" alt="Clotrimazole troche bottle"></span><span><b>Clotrimazole lozenge</b><small>Also called a "troche"</small></span></div>
+      <div class="medhead"><span class="ph xs"><img src="img/clotrimazole.jpg" alt="Clotrimazole troche bottle"><span class="cshadow"></span></span><span><b>Clotrimazole lozenge</b><small>Also called a "troche"</small></span></div>
       <div class="r"><span class="big acc">3×<small>a day</small></span><span>let it dissolve in your mouth, only if you have mouth sores</span></div>
     </div>
     <a class="strip" href="#call"><svg class="ic"><use href="#i-phone"/></svg><span>Severe, lasting, or getting worse? Call us.</span><svg class="ic chev"><use href="#i-chev"/></svg></a>
@@ -202,7 +205,7 @@
   <div class="bar"><a class="circ" href="#home" aria-label="Back to home"><svg class="ic"><use href="#i-back"/></svg></a></div>
   <div class="head">
     <div class="t"><h1>Nausea</h1><p class="lead">Ondansetron. Dissolves in your mouth.</p></div>
-    <span class="ph"><img src="img/ondansetron.jpg" alt="Ondansetron orally disintegrating tablets box"></span>
+    <span class="ph"><img src="img/ondansetron.jpg" alt="Ondansetron orally disintegrating tablets box"><span class="cshadow"></span></span>
   </div>
   <div class="stack">
     <div class="plan">
@@ -219,7 +222,7 @@
   <div class="bar"><a class="circ" href="#home" aria-label="Back to home"><svg class="ic"><use href="#i-back"/></svg></a></div>
   <div class="head">
     <div class="t"><h1>Diarrhea</h1><p class="lead">Imodium (loperamide). Swallow.</p></div>
-    <span class="ph"><img src="img/loperamide.jpg" alt="Imodium A-D loperamide caplets box"></span>
+    <span class="ph"><img src="img/loperamide.jpg" alt="Imodium A-D loperamide caplets box"><span class="cshadow"></span></span>
   </div>
   <div class="stack">
     <div class="plan">
