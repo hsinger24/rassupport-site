@@ -13,7 +13,10 @@ A static site. No accounts, no cookies, no analytics, no server. The daily check
 is kept in the visitor's own browser (`localStorage`) and clears each day.
 
 - `index.html` — the whole app; screens are sections switched by URL hash
-  (`#home`, `#routine`, `#today`, `#mouth`, `#nausea`, `#diarrhea`, `#call`, `#caregivers`)
+  (`#home`, `#routine`, `#today`, `#symptoms`, `#mouth`, `#nausea`, `#diarrhea`, `#call`, `#caregivers`)
+- The routine is six steps in the morning (antibiotic pill, spray, two steroid creams,
+  moisturizer, sunscreen) and five in the evening (no sunscreen). The sky at the top of each
+  screen follows the routine being shown: dawn for morning, dusk for evening.
 - `css/site.css`, `js/app.js` — styles and behaviour
 - `img/` — product photos cropped from the printed guide
 - `CNAME` — custom domain for GitHub Pages
