@@ -13,7 +13,7 @@
   --danger:#9A3B26; --danger-soft:#F8E6DE; --danger-muted:#A6503C;
   --cshadow:rgba(22,33,44,.2); --focus:#2F66B8;
   --head:#16212C; --italic:#8A4B2A; --italic-pm:#6B4A80; --soft:rgba(22,33,44,.64);
-  --moon-bg:#F0ECF6; --moon:#6B4A80; --sun-bg:#FBF0E4; --sun-ink:#9A5A1E;
+  --moon-bg:#F0ECF6; --moon:#6B4A80; --sun-bg:#FBF0E4; --sun-ink:#9A5A1E; --sym-bg:#F8EAE3; --sym:#A6503C;
   --navglass:rgba(255,253,250,.86); --navedge:rgba(255,255,255,.85); --navshadow:0 14px 36px rgba(70,50,40,.14),0 2px 6px rgba(70,50,40,.06); --cap:#F5E2C8;
   --home-am:linear-gradient(180deg,#C9D3E8 0%,#DCD3E3 26%,#F0D2C6 52%,#F8DCC2 68%,#FBF0E3 84%,#FBF8F3 100%);
   --home-pm:linear-gradient(180deg,#C6C2DD 0%,#D5C6DB 26%,#E6CBCB 52%,#F1D7C9 68%,#F9ECE2 84%,#FBF8F3 100%);
@@ -36,7 +36,7 @@
     --danger:#F2A58F; --danger-soft:#3A2228; --danger-muted:#E3907A;
     --cshadow:rgba(0,0,0,.5); --focus:#8FC1EE;
     --head:#F6F2EC; --italic:#FFD2AE; --italic-pm:#DCC6F0; --soft:rgba(255,255,255,.74);
-    --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572;
+    --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572; --sym-bg:rgba(255,255,255,.08); --sym:#F2A58F;
     --navglass:rgba(30,35,70,.84); --navedge:rgba(255,255,255,.08); --navshadow:0 14px 36px rgba(0,0,0,.4); --cap:rgba(235,164,85,.24);
     --home-am:linear-gradient(180deg,#141A36 0%,#222954 28%,#3E3768 50%,#6E4C70 68%,#2C2A4E 86%,#11152B 100%);
     --home-pm:linear-gradient(180deg,#0F1330 0%,#1E2350 30%,#3A3466 55%,#5A4068 70%,#261F44 86%,#11152B 100%);
@@ -58,7 +58,7 @@
   --danger:#F2A58F; --danger-soft:#3A2228; --danger-muted:#E3907A;
   --cshadow:rgba(0,0,0,.5); --focus:#8FC1EE;
   --head:#F6F2EC; --italic:#FFD2AE; --italic-pm:#DCC6F0; --soft:rgba(255,255,255,.74);
-  --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572;
+  --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572; --sym-bg:rgba(255,255,255,.08); --sym:#F2A58F;
   --navglass:rgba(30,35,70,.84); --navedge:rgba(255,255,255,.08); --navshadow:0 14px 36px rgba(0,0,0,.4); --cap:rgba(235,164,85,.24);
   --home-am:linear-gradient(180deg,#141A36 0%,#222954 28%,#3E3768 50%,#6E4C70 68%,#2C2A4E 86%,#11152B 100%);
   --home-pm:linear-gradient(180deg,#0F1330 0%,#1E2350 30%,#3A3466 55%,#5A4068 70%,#261F44 86%,#11152B 100%);
@@ -172,10 +172,21 @@ main{flex:1;display:flex;flex-direction:column}
 .daycard > svg.ic{color:var(--muted)}
 @media (hover:hover){.daycard:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(140,90,60,.14)}}
 .daycard{transition:transform .2s,box-shadow .2s}
+/* Home: the other half of the day and the way into Symptoms, as two equal tiles */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.tile{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:.875rem;min-height:8rem;padding:1rem;border:0;border-radius:1.5rem;background:var(--surface);color:var(--fg);box-shadow:var(--card-shadow);text-align:left;text-decoration:none;font:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.tile .ico{width:2.75rem;height:2.75rem;border-radius:.875rem;display:flex;align-items:center;justify-content:center;flex:none}
+.tile .ico svg.ic{width:1.375rem;height:1.375rem}
+.tile.dusk .ico{background:var(--moon-bg);color:var(--moon)}
+.tile.dawn .ico{background:var(--sun-bg);color:var(--sun-ink)}
+.tile.sym .ico{background:var(--sym-bg);color:var(--sym)}
+.tile b{display:block;font-size:1.0625rem;line-height:1.2}
+.tile small{display:block;font-size:.875rem;line-height:1.35;color:var(--muted);margin-top:.2rem}
+@media (hover:hover){.tile:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(140,90,60,.14)}}
 @media (prefers-reduced-motion:no-preference){
   #page-home .hero{animation:rise .6s ease-out both}
   #page-home .rcard{animation:rise .6s .08s ease-out both}
-  #page-home .daycard{animation:rise .6s .16s ease-out both}
+  #page-home .pair{animation:rise .6s .16s ease-out both}
   body[data-page="home"] .sky i{animation:glow 6s ease-in-out infinite}
 }
 
