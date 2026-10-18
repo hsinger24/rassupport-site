@@ -34,10 +34,11 @@
     el.classList.toggle('dusk', other === 'pm');
     el.classList.toggle('dawn', other === 'am');
     if(ico) ico.setAttribute('href', other === 'pm' ? '#i-moon' : '#i-sun');
+    nameEl.textContent = (other === 'pm' ? 'Evening' : 'Morning') + (context === 'today' ? '' : ' routine');
     var status;
+    if(!statusEl) return;
     if(other === 'pm') status = oc.n === 0 ? oc.t + ' steps · tonight' : (oc.n === oc.t ? 'All done' : oc.n + ' of ' + oc.t + ' done');
     else status = oc.n === 0 ? oc.t + ' steps · not started' : (oc.n === oc.t ? 'Done · all ' + oc.t + ' steps' : oc.n + ' of ' + oc.t + ' done');
-    nameEl.textContent = (other === 'pm' ? 'Evening' : 'Morning') + (context === 'today' ? '' : ' routine');
     statusEl.textContent = status;
   }
 
@@ -50,9 +51,9 @@
     list.forEach(function(x){ if(!firstOpen && !done[seg+'-'+x.id]) firstOpen = x; });
     var h = new Date().getHours();
     $('homeDate').textContent = dateLabel();
-    $('homeGreet').textContent = h < 12 ? 'morning.' : (h < 17 ? 'afternoon.' : 'evening.');
+    $('homeGreet').textContent = h < 12 ? 'morning' : (h < 17 ? 'afternoon' : 'evening');
     $('homeWhen').textContent = seg === 'am' ? 'Morning routine' : 'Evening routine';
-    $('homeCount').textContent = n === 0 ? list.length + ' steps' : (n === list.length ? 'All done' : n + ' of ' + list.length);
+    $('homeCount').textContent = n === 0 ? list.length + ' steps' : (n === list.length ? 'All done' : n + ' of ' + list.length + ' done');
     $('homeBar').style.width = Math.round(100 * n / list.length) + '%';
     $('homeCta').textContent = n === 0 ? 'Start routine' : (n < list.length ? 'Continue routine' : 'Routine done');
     if(firstOpen){ $('nextName').textContent = NEXT[firstOpen.id][0]; $('nextWhere').textContent = ' · ' + NEXT[firstOpen.id][1]; }
@@ -63,7 +64,7 @@
       c.classList.toggle('next', !!firstOpen && id === firstOpen.id);
       c.classList.toggle('done', !!done[seg+'-'+id]);
     });
-    paintDaycard($('homeOther'), seg === 'am' ? 'pm' : 'am', $('homeOtherIcon'), $('homeOtherName'), $('homeOtherStatus'), 'home');
+    paintDaycard($('homeOther'), seg === 'am' ? 'pm' : 'am', $('homeOtherIcon'), $('homeOtherName'), null, 'home');
   }
   $('homeOther').addEventListener('click', function(){ setSeg(seg === 'am' ? 'pm' : 'am'); paintHome(); paintToday(); });
 
@@ -189,9 +190,8 @@
 
   /* ---------- Routing ---------- */
   var pages = toArr(document.querySelectorAll('[data-page]'));
-  var tabs = $('tabs'), tabLinks = toArr(tabs.querySelectorAll('a'));
+  var fab = $('fab');
   var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', call:'Call your care team', caregivers:'For caregivers'};
-  var tabFor = {mouth:'symptoms', nausea:'symptoms', diarrhea:'symptoms', caregivers:'home'};
   var current = null;
   function route(){
     var id = (location.hash || '#home').slice(1);
@@ -199,12 +199,10 @@
     if(!entered && id !== 'welcome'){ pendingHash = '#' + id; id = 'welcome'; }
     if(entered && id === 'welcome') id = 'home';
     pages.forEach(function(p){ p.hidden = p.id !== 'page-' + id; });
-    tabs.hidden = (id === 'routine' || id === 'call' || id === 'welcome');
+    fab.hidden = (id === 'routine' || id === 'call' || id === 'welcome');
     body.setAttribute('data-page', id);
     body.classList.toggle('on-dark', id === 'call');
     if(id !== 'routine') body.classList.remove('done-view');
-    var tab = tabFor[id] || id;
-    tabLinks.forEach(function(a){ if(a.getAttribute('data-tab') === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
     document.title = id === 'home' ? titles.home : titles[id] + ' · Rasonque Supportive Care';
     if(id === 'routine' && current !== 'routine') enterRoutine();
     if(id === 'today') paintToday();

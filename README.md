@@ -17,7 +17,10 @@ is kept in the visitor's own browser (`localStorage`) and clears each day.
 - The routine is six steps in the morning (antibiotic pill, spray, two steroid creams,
   moisturizer, sunscreen) and five in the evening (no sunscreen). The sky at the top of each
   screen follows the routine being shown: clear blue for morning, a soft indigo for evening
-  ("Clinical Blue" palette; blue marks progress). The tab bar is a floating frosted capsule.
+  ("Clinical Blue" palette; blue marks progress). Type is Figtree throughout, in sentence case.
+- No tab bar. Home links to everything (routine, today's checklist, the other routine, symptoms,
+  caregivers); inner screens have a back button; a terracotta "Call care team" button sits in the
+  bottom-right corner of every screen except the routine walkthrough and the Call screen itself.
 - `css/site.css`, `js/app.js` — styles and behaviour
 - `img/` — product photos cropped from the printed guide
 - `CNAME` — custom domain for GitHub Pages
