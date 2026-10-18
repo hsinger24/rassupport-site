@@ -1,5 +1,5 @@
-/* v4 "First Light". A sky at the top of every screen follows the routine you are on: dawn for the morning
-   routine, dusk for the evening one, a night sky on Call. It always fades to warm paper before small text
+/* v4.2. A sky at the top of every screen follows the routine you are on: dawn for the morning routine,
+   a light lilac dusk for the evening one, a night sky on Call. It always fades to warm paper before small text
    sits on it. Display type is Instrument Serif; body text is Atkinson Hyperlegible. Amber means progress. */
 :root{
   --bg:#FBF8F3; --surface:#FFFFFF; --tint:#FBF4EA; --fg:#16212C; --muted:#5D6570;
@@ -8,21 +8,20 @@
   --glass:rgba(255,253,250,.76); --glass-edge:rgba(255,255,255,.8); --glass-hi:rgba(255,255,255,.95);
   --glass-shadow:0 24px 60px rgba(140,90,60,.16),0 2px 6px rgba(140,90,60,.06);
   --card-shadow:0 1px 2px rgba(60,40,20,.04),0 14px 34px rgba(140,90,60,.08);
-  --frost:rgba(255,255,255,.72); --tabbar:rgba(255,255,255,.92);
+  --frost:rgba(255,255,255,.72);
   --accent:#E2913A; --accent-2:#F2BE7E; --accent-text:#9A5A1E; --glow:rgba(226,145,58,.6); --halo:rgba(226,145,58,.16);
   --danger:#9A3B26; --danger-soft:#F8E6DE; --danger-muted:#A6503C;
   --cshadow:rgba(22,33,44,.2); --focus:#2F66B8;
-  --head:#16212C; --italic:#8A4B2A; --soft:rgba(22,33,44,.64);
-  --dawn-ink:#16212C; --dawn-sub:#4E5662; --dawn-ico-bg:rgba(255,255,255,.6); --dawn-ico:#9A5A1E;
+  --head:#16212C; --italic:#8A4B2A; --italic-pm:#6B4A80; --soft:rgba(22,33,44,.64);
+  --moon-bg:#F0ECF6; --moon:#6B4A80; --sun-bg:#FBF0E4; --sun-ink:#9A5A1E;
+  --navglass:rgba(255,253,250,.86); --navedge:rgba(255,255,255,.85); --navshadow:0 14px 36px rgba(70,50,40,.14),0 2px 6px rgba(70,50,40,.06); --cap:#F5E2C8;
   --home-am:linear-gradient(180deg,#C9D3E8 0%,#DCD3E3 26%,#F0D2C6 52%,#F8DCC2 68%,#FBF0E3 84%,#FBF8F3 100%);
-  --home-pm:linear-gradient(180deg,#1B2142 0%,#2C3160 24%,#59497A 46%,#A9677C 64%,#E3A07F 79%,#F6DCC6 91%,#FBF8F3 100%);
+  --home-pm:linear-gradient(180deg,#C6C2DD 0%,#D5C6DB 26%,#E6CBCB 52%,#F1D7C9 68%,#F9ECE2 84%,#FBF8F3 100%);
   --band-am:linear-gradient(180deg,#CDD5EA 0%,#E0D6E5 30%,#F2D6C8 56%,#F9E3CF 76%,#FBF8F3 100%);
   --band-pm:linear-gradient(180deg,#C7C5E0 0%,#D8C8DE 30%,#ECD2CF 56%,#F8E3D5 76%,#FBF8F3 100%);
   --sun-am:radial-gradient(circle,rgba(255,236,206,1) 0%,rgba(255,214,166,.85) 9%,rgba(255,196,140,.35) 22%,rgba(255,196,140,0) 46%);
-  --sun-pm:radial-gradient(circle,rgba(255,214,176,.95) 0%,rgba(250,176,140,.7) 8%,rgba(236,140,120,.28) 22%,rgba(236,140,120,0) 46%);
-  --dusk-card:linear-gradient(120deg,#262C55 0%,#4A3F6E 70%,#7D5577 100%);
-  --dawn-card:linear-gradient(120deg,#D3DAEB 0%,#F0D6CB 60%,#F8E1C9 100%);
-  --strip-am:#CDD5EA; --strip-pm:#C7C5E0; --strip-home-am:#C9D3E8; --strip-home-pm:#1B2142;
+  --sun-pm:radial-gradient(circle,rgba(255,222,204,.95) 0%,rgba(244,186,170,.6) 9%,rgba(232,156,150,.22) 22%,rgba(232,156,150,0) 46%);
+  --strip-am:#CDD5EA; --strip-pm:#C7C5E0; --strip-home-am:#C9D3E8; --strip-home-pm:#C6C2DD;
   --display:"Instrument Serif",Georgia,"Times New Roman",serif;
   --body:"Atkinson Hyperlegible","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
@@ -32,19 +31,19 @@
     --line:#272D52; --track:rgba(255,255,255,.12); --check-off:#4C5378;
     --btn-bg:#F3EEE6; --btn-fg:#16212C; --shadow-btn:0 12px 26px rgba(0,0,0,.35);
     --glass:rgba(30,35,70,.72); --glass-edge:rgba(255,255,255,.08); --glass-hi:rgba(255,255,255,.06);
-    --glass-shadow:0 24px 60px rgba(0,0,0,.4); --card-shadow:none; --frost:rgba(255,255,255,.1); --tabbar:rgba(27,32,66,.92);
+    --glass-shadow:0 24px 60px rgba(0,0,0,.4); --card-shadow:none; --frost:rgba(255,255,255,.1);
     --accent:#EBA455; --accent-2:#F5C88E; --accent-text:#F0B572; --glow:rgba(235,164,85,.5); --halo:rgba(235,164,85,.18);
     --danger:#F2A58F; --danger-soft:#3A2228; --danger-muted:#E3907A;
     --cshadow:rgba(0,0,0,.5); --focus:#8FC1EE;
-    --head:#F6F2EC; --italic:#FFD2AE; --soft:rgba(255,255,255,.74);
-    --dawn-ink:#FFFFFF; --dawn-sub:rgba(255,255,255,.8); --dawn-ico-bg:rgba(255,255,255,.12); --dawn-ico:#FFD2AE;
+    --head:#F6F2EC; --italic:#FFD2AE; --italic-pm:#DCC6F0; --soft:rgba(255,255,255,.74);
+    --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572;
+    --navglass:rgba(30,35,70,.84); --navedge:rgba(255,255,255,.08); --navshadow:0 14px 36px rgba(0,0,0,.4); --cap:rgba(235,164,85,.24);
     --home-am:linear-gradient(180deg,#141A36 0%,#222954 28%,#3E3768 50%,#6E4C70 68%,#2C2A4E 86%,#11152B 100%);
     --home-pm:linear-gradient(180deg,#0F1330 0%,#1E2350 30%,#3A3466 55%,#5A4068 70%,#261F44 86%,#11152B 100%);
     --band-am:linear-gradient(180deg,#1C2248 0%,#2E2F5E 35%,#3E355F 60%,#11152B 100%);
     --band-pm:linear-gradient(180deg,#161B40 0%,#282A58 35%,#382F58 60%,#11152B 100%);
     --sun-am:radial-gradient(circle,rgba(255,190,140,.5) 0%,rgba(240,150,110,.28) 10%,rgba(240,150,110,0) 42%);
     --sun-pm:radial-gradient(circle,rgba(255,170,140,.42) 0%,rgba(220,130,120,.22) 10%,rgba(220,130,120,0) 42%);
-    --dawn-card:linear-gradient(120deg,#2E3560 0%,#5A4A72 60%,#8A6070 100%);
     --strip-am:#1C2248; --strip-pm:#161B40; --strip-home-am:#141A36; --strip-home-pm:#0F1330;
     color-scheme:dark;
   }
@@ -54,24 +53,24 @@
   --line:#272D52; --track:rgba(255,255,255,.12); --check-off:#4C5378;
   --btn-bg:#F3EEE6; --btn-fg:#16212C; --shadow-btn:0 12px 26px rgba(0,0,0,.35);
   --glass:rgba(30,35,70,.72); --glass-edge:rgba(255,255,255,.08); --glass-hi:rgba(255,255,255,.06);
-  --glass-shadow:0 24px 60px rgba(0,0,0,.4); --card-shadow:none; --frost:rgba(255,255,255,.1); --tabbar:rgba(27,32,66,.92);
+  --glass-shadow:0 24px 60px rgba(0,0,0,.4); --card-shadow:none; --frost:rgba(255,255,255,.1);
   --accent:#EBA455; --accent-2:#F5C88E; --accent-text:#F0B572; --glow:rgba(235,164,85,.5); --halo:rgba(235,164,85,.18);
   --danger:#F2A58F; --danger-soft:#3A2228; --danger-muted:#E3907A;
   --cshadow:rgba(0,0,0,.5); --focus:#8FC1EE;
-  --head:#F6F2EC; --italic:#FFD2AE; --soft:rgba(255,255,255,.74);
-  --dawn-ink:#FFFFFF; --dawn-sub:rgba(255,255,255,.8); --dawn-ico-bg:rgba(255,255,255,.12); --dawn-ico:#FFD2AE;
+  --head:#F6F2EC; --italic:#FFD2AE; --italic-pm:#DCC6F0; --soft:rgba(255,255,255,.74);
+  --moon-bg:rgba(255,255,255,.08); --moon:#DCC6F0; --sun-bg:rgba(255,255,255,.08); --sun-ink:#F0B572;
+  --navglass:rgba(30,35,70,.84); --navedge:rgba(255,255,255,.08); --navshadow:0 14px 36px rgba(0,0,0,.4); --cap:rgba(235,164,85,.24);
   --home-am:linear-gradient(180deg,#141A36 0%,#222954 28%,#3E3768 50%,#6E4C70 68%,#2C2A4E 86%,#11152B 100%);
   --home-pm:linear-gradient(180deg,#0F1330 0%,#1E2350 30%,#3A3466 55%,#5A4068 70%,#261F44 86%,#11152B 100%);
   --band-am:linear-gradient(180deg,#1C2248 0%,#2E2F5E 35%,#3E355F 60%,#11152B 100%);
   --band-pm:linear-gradient(180deg,#161B40 0%,#282A58 35%,#382F58 60%,#11152B 100%);
   --sun-am:radial-gradient(circle,rgba(255,190,140,.5) 0%,rgba(240,150,110,.28) 10%,rgba(240,150,110,0) 42%);
   --sun-pm:radial-gradient(circle,rgba(255,170,140,.42) 0%,rgba(220,130,120,.22) 10%,rgba(220,130,120,0) 42%);
-  --dawn-card:linear-gradient(120deg,#2E3560 0%,#5A4A72 60%,#8A6070 100%);
   --strip-am:#1C2248; --strip-pm:#161B40; --strip-home-am:#141A36; --strip-home-pm:#0F1330;
   color-scheme:dark;
 }
-/* Evening Home: the dusk sky is dark, so its heading turns light. */
-body[data-page="home"][data-seg="pm"]{--head:#FFFFFF; --italic:#FFD2AE; --soft:rgba(255,255,255,.8)}
+/* Evening: the sky stays light; only its hue and the heading accent shift. */
+body[data-seg="pm"]{--italic:var(--italic-pm)}
 
 *{box-sizing:border-box}
 html,body{min-height:100%}
@@ -163,18 +162,16 @@ main{flex:1;display:flex;flex-direction:column}
 .btn.quiet{background:transparent;color:var(--muted);height:2.75rem;font-size:1rem;box-shadow:none}
 .btn:hover{filter:brightness(1.06)}
 
-/* The other half of the day: a dusk card in the morning, a dawn card in the evening */
-.daycard{display:flex;align-items:center;gap:.875rem;width:100%;border:0;border-radius:1.5rem;padding:.75rem 1.125rem .75rem .875rem;text-align:left;cursor:pointer;font:inherit;text-decoration:none}
-.daycard.dusk{background:var(--dusk-card);color:#FFFFFF;box-shadow:0 14px 30px rgba(38,44,85,.22)}
-.daycard.dawn{background:var(--dawn-card);color:var(--dawn-ink);box-shadow:0 10px 24px rgba(140,90,60,.12)}
+/* The other half of the day: a white card with a moon in the morning, a sun in the evening */
+.daycard{display:flex;align-items:center;gap:.875rem;width:100%;border:0;border-radius:1.5rem;padding:.75rem 1.125rem .75rem .875rem;text-align:left;cursor:pointer;font:inherit;text-decoration:none;background:var(--surface);color:var(--fg);box-shadow:var(--card-shadow)}
 .daycard .ico{width:3.25rem;height:3.25rem;border-radius:1rem;display:flex;align-items:center;justify-content:center;flex:none}
-.daycard.dusk .ico{background:rgba(255,255,255,.12);color:#FFD2AE}
-.daycard.dawn .ico{background:var(--dawn-ico-bg);color:var(--dawn-ico)}
+.daycard.dusk .ico{background:var(--moon-bg);color:var(--moon)}
+.daycard.dawn .ico{background:var(--sun-bg);color:var(--sun-ink)}
 .daycard b{display:block;font-size:1.125rem;line-height:1.2}
-.daycard small{display:block;font-size:.875rem;line-height:1.35}
-.daycard.dusk small{color:rgba(255,255,255,.8)}
-.daycard.dawn small{color:var(--dawn-sub)}
-.daycard > svg.ic{opacity:.8}
+.daycard small{display:block;font-size:.875rem;line-height:1.35;color:var(--muted)}
+.daycard > svg.ic{color:var(--muted)}
+@media (hover:hover){.daycard:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(140,90,60,.14)}}
+.daycard{transition:transform .2s,box-shadow .2s}
 @media (prefers-reduced-motion:no-preference){
   #page-home .hero{animation:rise .6s ease-out both}
   #page-home .rcard{animation:rise .6s .08s ease-out both}
@@ -321,8 +318,11 @@ main{flex:1;display:flex;flex-direction:column}
 .code-err{color:var(--danger);font-size:.875rem;font-weight:700}
 .proto-note{color:var(--muted);font-size:.875rem;line-height:1.45;margin-top:auto;padding:0 .25rem}
 
-/* Tab bar */
-.tabs{position:sticky;bottom:0;z-index:5;background:var(--tabbar);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 -1px 0 var(--line);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding-block:.625rem max(1rem,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.tabs a{display:flex;flex-direction:column;align-items:center;gap:.2rem;min-height:2.75rem;text-decoration:none;color:var(--muted);font-size:.75rem;font-weight:700}
-.tabs a svg.ic{width:1.5rem;height:1.5rem}
+/* Tab bar: a floating frosted capsule; the current tab sits in a honey capsule. Every tab keeps its label. */
+.tabs{position:sticky;bottom:0;z-index:5;padding:1.5rem max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));pointer-events:none;background:linear-gradient(180deg,transparent 0%,var(--bg) 62%)}
+.tabs .pill{pointer-events:auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;height:4.375rem;padding:0 .375rem;border-radius:2.1875rem;background:var(--navglass);-webkit-backdrop-filter:blur(24px) saturate(1.4);backdrop-filter:blur(24px) saturate(1.4);border:1px solid var(--navedge);box-shadow:inset 0 1px 0 var(--glass-hi),var(--navshadow)}
+.tabs a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.125rem;min-height:3.25rem;text-decoration:none;color:var(--muted);font-size:.75rem;font-weight:700}
+.tabs .cap{width:3.5rem;height:1.875rem;border-radius:.9375rem;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.tabs a svg.ic{width:1.375rem;height:1.375rem}
 .tabs a[aria-current="page"]{color:var(--fg)}
+.tabs a[aria-current="page"] .cap{background:var(--cap)}

@@ -16,7 +16,8 @@ is kept in the visitor's own browser (`localStorage`) and clears each day.
   (`#home`, `#routine`, `#today`, `#symptoms`, `#mouth`, `#nausea`, `#diarrhea`, `#call`, `#caregivers`)
 - The routine is six steps in the morning (antibiotic pill, spray, two steroid creams,
   moisturizer, sunscreen) and five in the evening (no sunscreen). The sky at the top of each
-  screen follows the routine being shown: dawn for morning, dusk for evening.
+  screen follows the routine being shown: dawn for morning, a light lilac dusk for evening.
+  The tab bar is a floating frosted capsule.
 - `css/site.css`, `js/app.js` — styles and behaviour
 - `img/` — product photos cropped from the printed guide
 - `CNAME` — custom domain for GitHub Pages
