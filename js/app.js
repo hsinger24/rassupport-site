@@ -50,7 +50,6 @@
     var firstOpen = null;
     list.forEach(function(x){ if(!firstOpen && !done[seg+'-'+x.id]) firstOpen = x; });
     var h = new Date().getHours();
-    $('homeDate').textContent = dateLabel();
     $('homeGreet').textContent = h < 12 ? 'morning' : (h < 17 ? 'afternoon' : 'evening');
     $('homeWhen').textContent = seg === 'am' ? 'Morning routine' : 'Evening routine';
     $('homeCount').textContent = n === 0 ? list.length + ' steps' : (n === list.length ? 'All done' : n + ' of ' + list.length + ' done');
@@ -160,14 +159,36 @@
   $('restartBtn').addEventListener('click', function(){ setStep(0); });
   $('doneOther').addEventListener('click', function(){ setSeg('pm'); location.hash = '#home'; });
 
-  /* ---------- Language note ---------- */
-  var langNote = $('langNote');
-  ['langBtn','langBtn2'].forEach(function(id){
-    var b = $(id);
-    b.addEventListener('click', function(){
-      langNote.hidden = !langNote.hidden;
-      b.setAttribute('aria-expanded', String(!langNote.hidden));
-    });
+  /* ---------- First visit: Home introduces the site once, then greets ---------- */
+  var SEEN = 'rasonque-seen-v1', firstVisit = true;
+  try{ firstVisit = !localStorage.getItem(SEEN); localStorage.setItem(SEEN, '1'); }catch(e){}
+  $('hWelcome').hidden = !firstVisit; $('hGreet').hidden = firstVisit;
+  $('introFull').hidden = !firstVisit; $('introTag').hidden = firstVisit;
+
+  /* ---------- Call: the care team's number, saved in this browser only ---------- */
+  var TEAM = 'rasonque-careteam-v1';
+  function digits(v){ return (v || '').replace(/[^0-9+]/g, ''); }
+  function loadTeam(){ try{ var t = JSON.parse(localStorage.getItem(TEAM) || 'null'); return t && t.main ? t : null; }catch(e){ return null; } }
+  function showTeam(mode){
+    var t = loadTeam();
+    if(!mode) mode = t ? 'saved' : 'empty';
+    $('teamEmpty').hidden = mode !== 'empty'; $('teamForm').hidden = mode !== 'form'; $('teamSaved').hidden = mode !== 'saved';
+    if(mode === 'saved' && t){
+      $('teamNum').textContent = t.main; $('teamCall').setAttribute('href', 'tel:' + digits(t.main));
+      $('teamAfterRow').hidden = !t.after;
+      if(t.after){ $('teamAfter').textContent = t.after; $('teamAfter').setAttribute('href', 'tel:' + digits(t.after)); }
+    }
+    if(mode === 'form'){ $('telMain').value = t ? t.main : ''; $('telAfter').value = t && t.after ? t.after : ''; $('telErr').hidden = true; $('telMain').focus(); }
+  }
+  $('teamAdd').addEventListener('click', function(){ showTeam('form'); });
+  $('teamChange').addEventListener('click', function(){ showTeam('form'); });
+  $('teamCancel').addEventListener('click', function(){ showTeam(); });
+  $('teamForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var main = $('telMain').value.trim(), after = $('telAfter').value.trim();
+    if(digits(main).replace('+', '').length < 7){ $('telErr').hidden = false; $('telMain').focus(); return; }
+    try{ localStorage.setItem(TEAM, JSON.stringify({main: main, after: after})); }catch(err){}
+    showTeam(loadTeam() ? 'saved' : 'empty');
   });
 
   /* ---------- Welcome / access code (prototype: any code works, nothing stored or sent) ---------- */
@@ -191,7 +212,7 @@
   /* ---------- Routing ---------- */
   var pages = toArr(document.querySelectorAll('[data-page]'));
   var fab = $('fab');
-  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', call:'Call your care team', caregivers:'For caregivers'};
+  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', rash:'Rash', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', video:'How-to video', guide:'Patient guide', call:'Call your care team', caregivers:'For caregivers'};
   var current = null;
   function route(){
     var id = (location.hash || '#home').slice(1);
@@ -207,6 +228,7 @@
     if(id === 'routine' && current !== 'routine') enterRoutine();
     if(id === 'today') paintToday();
     if(id === 'home') paintHome();
+    if(id === 'call') showTeam();
     current = id;
     window.scrollTo(0, 0);
   }
