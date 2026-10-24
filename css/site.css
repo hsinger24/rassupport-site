@@ -389,6 +389,11 @@ main{flex:1;display:flex;flex-direction:column}
 .dl .pdf svg.ic{width:1rem;height:1rem}
 .about{background:var(--surface);border-radius:1.5rem;padding:1.125rem 1.25rem;display:flex;flex-direction:column;gap:.375rem;box-shadow:var(--card-shadow)}
 .about p{color:var(--ink2);font-size:.9375rem;line-height:1.5}
+.about h2{margin:0 0 .125rem;font-size:1.0625rem;font-weight:700;line-height:1.25;color:var(--fg)}
+.about ul{margin:0;padding-left:1.15em;color:var(--ink2);font-size:.9375rem;line-height:1.5}
+.about li + li{margin-top:.45em}
+.about a,.note a{color:var(--accent-text);font-weight:600;text-decoration:none}
+.about a:hover,.note a:hover{text-decoration:underline}
 /* Call: the care team's number, kept on this phone only */
 .team{display:flex;flex-direction:column;gap:.875rem}
 .team[hidden]{display:none}

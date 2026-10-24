@@ -19,6 +19,8 @@ team's phone number if the patient saves one on the Call screen; it is never sen
 - Home introduces the site on a visitor's first visit (Dr. King's wording), then greets them by
   time of day. Below the routine card: one row into Symptoms and a Learn card (how-to video,
   patient guide, caregivers). The globe button opens the patient guide.
+- `#about` holds what the site is, the medical disclaimer and the privacy note; Home's footnote
+  carries the short version (education only, follow your care team, 911 in an emergency) and links to it.
 - The routine is six steps in the morning (antibiotic pill, spray, two steroid creams,
   moisturizer, sunscreen) and five in the evening (no sunscreen). The sky at the top of each
   screen follows the routine being shown: clear blue for morning, a soft indigo for evening

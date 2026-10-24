@@ -212,7 +212,7 @@
   /* ---------- Routing ---------- */
   var pages = toArr(document.querySelectorAll('[data-page]'));
   var fab = $('fab');
-  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', rash:'Rash', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', video:'How-to video', guide:'Patient guide', call:'Call your care team', caregivers:'For caregivers'};
+  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', rash:'Rash', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', video:'How-to video', guide:'Patient guide', about:'About this site', call:'Call your care team', caregivers:'For caregivers'};
   var current = null;
   function route(){
     var id = (location.hash || '#home').slice(1);
