@@ -165,31 +165,6 @@
   $('hWelcome').hidden = !firstVisit; $('hGreet').hidden = firstVisit;
   $('introFull').hidden = !firstVisit; $('introTag').hidden = firstVisit;
 
-  /* ---------- Call: the care team's number, saved in this browser only ---------- */
-  var TEAM = 'rasonque-careteam-v1';
-  function digits(v){ return (v || '').replace(/[^0-9+]/g, ''); }
-  function loadTeam(){ try{ var t = JSON.parse(localStorage.getItem(TEAM) || 'null'); return t && t.main ? t : null; }catch(e){ return null; } }
-  function showTeam(mode){
-    var t = loadTeam();
-    if(!mode) mode = t ? 'saved' : 'empty';
-    $('teamEmpty').hidden = mode !== 'empty'; $('teamForm').hidden = mode !== 'form'; $('teamSaved').hidden = mode !== 'saved';
-    if(mode === 'saved' && t){
-      $('teamNum').textContent = t.main; $('teamCall').setAttribute('href', 'tel:' + digits(t.main));
-      $('teamAfterRow').hidden = !t.after;
-      if(t.after){ $('teamAfter').textContent = t.after; $('teamAfter').setAttribute('href', 'tel:' + digits(t.after)); }
-    }
-    if(mode === 'form'){ $('telMain').value = t ? t.main : ''; $('telAfter').value = t && t.after ? t.after : ''; $('telErr').hidden = true; $('telMain').focus(); }
-  }
-  $('teamAdd').addEventListener('click', function(){ showTeam('form'); });
-  $('teamChange').addEventListener('click', function(){ showTeam('form'); });
-  $('teamCancel').addEventListener('click', function(){ showTeam(); });
-  $('teamForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var main = $('telMain').value.trim(), after = $('telAfter').value.trim();
-    if(digits(main).replace('+', '').length < 7){ $('telErr').hidden = false; $('telMain').focus(); return; }
-    try{ localStorage.setItem(TEAM, JSON.stringify({main: main, after: after})); }catch(err){}
-    showTeam(loadTeam() ? 'saved' : 'empty');
-  });
 
   /* ---------- Welcome / access code (prototype: any code works, nothing stored or sent) ---------- */
   var GATE = false; /* false on the public site; true in the study build, where codes will be real */
@@ -211,8 +186,7 @@
 
   /* ---------- Routing ---------- */
   var pages = toArr(document.querySelectorAll('[data-page]'));
-  var fab = $('fab');
-  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', rash:'Rash', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', video:'How-to video', guide:'Patient guide', about:'About this site', call:'Call your care team', caregivers:'For caregivers'};
+  var titles = {welcome:'Welcome', home:'Rasonque Supportive Care', routine:'Routine', today:'Today', symptoms:'Symptoms', rash:'Rash', mouth:'Mouth sores', nausea:'Nausea', diarrhea:'Diarrhea', video:'How-to video', guide:'Patient guide', about:'About this site', caregivers:'For caregivers'};
   var current = null;
   function route(){
     var id = (location.hash || '#home').slice(1);
@@ -220,15 +194,12 @@
     if(!entered && id !== 'welcome'){ pendingHash = '#' + id; id = 'welcome'; }
     if(entered && id === 'welcome') id = 'home';
     pages.forEach(function(p){ p.hidden = p.id !== 'page-' + id; });
-    fab.hidden = (id === 'routine' || id === 'call' || id === 'welcome');
     body.setAttribute('data-page', id);
-    body.classList.toggle('on-dark', id === 'call');
     if(id !== 'routine') body.classList.remove('done-view');
     document.title = id === 'home' ? titles.home : titles[id] + ' · Rasonque Supportive Care';
     if(id === 'routine' && current !== 'routine') enterRoutine();
     if(id === 'today') paintToday();
     if(id === 'home') paintHome();
-    if(id === 'call') showTeam();
     current = id;
     window.scrollTo(0, 0);
   }

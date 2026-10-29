@@ -1,7 +1,7 @@
 /* v6 "Clinical Blue". A cool sky at the top of every screen follows the routine you are on: clear blue for
-   the morning routine, a soft indigo for the evening one, a deep blue night on Call. It always fades to paper before small text
+   the morning routine and a soft indigo for the evening one. It always fades to paper before small text
    sits on it. One typeface, Figtree, in sentence case throughout. Blue means progress. There is no tab bar: Home links to
-   everything, inner screens have a back button, and a terracotta "Call care team" button sits in the bottom corner.
+   everything and inner screens have a back button. The site has no contact features: no call button, no phone numbers.
    v8: Home introduces the site on the first visit, then greets; the routine card carries Today and the other routine;
    one row leads to Symptoms (rash first); one Learn card holds the how-to video, the patient guide and caregivers. */
 :root{
@@ -20,7 +20,6 @@
   --pulse-bg:#EAF0FC; --lang-edge:rgba(11,27,46,.14); --lang-bg:rgba(255,255,255,.5);
   --ink2:#3E4C60; --ghost-bg:rgba(255,255,255,.6); --ghost-edge:rgba(11,27,46,.12); --quiet-bg:#F1F4F9; --quiet-ink:#546172;
   --ph-bg:linear-gradient(135deg,#F4ECE6 0%,#EADCD2 100%); --ph-ink:#6B5242; --ph-edge:rgba(154,107,30,.2);
-  --call:#B4473A; --call-shadow:0 14px 30px rgba(180,71,58,.32),0 2px 6px rgba(180,71,58,.2);
   --stage-glow:#EAF1FC; --stage-shadow:0 24px 60px rgba(30,50,90,.12),0 2px 6px rgba(30,50,90,.05);
   --home-am:linear-gradient(180deg,#CFDDF2 0%,#DCE6F5 30%,#EAF0F8 62%,#F5F7FA 100%);
   --home-pm:linear-gradient(180deg,#D5D6EE 0%,#E1E2F2 30%,#ECEDF6 62%,#F5F7FA 100%);
@@ -47,7 +46,6 @@
     --pulse-bg:rgba(111,151,242,.16); --lang-edge:rgba(255,255,255,.18); --lang-bg:rgba(255,255,255,.06);
     --ink2:#C3CCDA; --ghost-bg:rgba(255,255,255,.06); --ghost-edge:rgba(255,255,255,.16); --quiet-bg:rgba(255,255,255,.08); --quiet-ink:#A3AEC0;
     --ph-bg:rgba(255,255,255,.06); --ph-ink:#B8C2D2; --ph-edge:rgba(255,255,255,.14);
-    --call:#B4473A; --call-shadow:0 14px 30px rgba(0,0,0,.45);
     --stage-glow:#EAF1FC; --stage-shadow:0 24px 60px rgba(0,0,0,.35);
     --home-am:linear-gradient(180deg,#0F1B33 0%,#16264A 34%,#1E3260 58%,#16233F 82%,#0D1524 100%);
     --home-pm:linear-gradient(180deg,#121535 0%,#1C1F4C 34%,#282A60 58%,#191B3E 82%,#0D1524 100%);
@@ -73,7 +71,6 @@
   --pulse-bg:rgba(111,151,242,.16); --lang-edge:rgba(255,255,255,.18); --lang-bg:rgba(255,255,255,.06);
     --ink2:#C3CCDA; --ghost-bg:rgba(255,255,255,.06); --ghost-edge:rgba(255,255,255,.16); --quiet-bg:rgba(255,255,255,.08); --quiet-ink:#A3AEC0;
     --ph-bg:rgba(255,255,255,.06); --ph-ink:#B8C2D2; --ph-edge:rgba(255,255,255,.14);
-    --call:#B4473A; --call-shadow:0 14px 30px rgba(0,0,0,.45);
   --stage-glow:#EAF1FC; --stage-shadow:0 24px 60px rgba(0,0,0,.35);
   --home-am:linear-gradient(180deg,#0F1B33 0%,#16264A 34%,#1E3260 58%,#16233F 82%,#0D1524 100%);
   --home-pm:linear-gradient(180deg,#121535 0%,#1C1F4C 34%,#282A60 58%,#191B3E 82%,#0D1524 100%);
@@ -333,8 +330,7 @@ main{flex:1;display:flex;flex-direction:column}
 .medhead{display:flex;align-items:center;gap:.875rem;padding:1rem 0 .875rem}
 .medhead b{display:block;font-size:1.125rem;line-height:1.3;font-weight:600}
 .medhead small{display:block;color:var(--muted);font-size:.875rem}
-.strip{background:var(--danger-soft);color:var(--danger);border-radius:1.5rem;padding:1.125rem 1.25rem;display:flex;align-items:center;gap:.875rem;text-decoration:none;font-weight:600;line-height:1.35}
-.strip .chev{margin-left:auto}
+.strip{margin:0;background:var(--danger-soft);color:var(--danger);border-radius:1.5rem;padding:1rem 1.25rem;display:flex;align-items:center;gap:.875rem;font-weight:600;line-height:1.35}
 
 /* Call: a night sky */
 .page.dark{position:relative;color:#FFFFFF;gap:1.6rem}
@@ -394,19 +390,6 @@ main{flex:1;display:flex;flex-direction:column}
 .about li + li{margin-top:.45em}
 .about a,.note a{color:var(--accent-text);font-weight:600;text-decoration:none}
 .about a:hover,.note a:hover{text-decoration:underline}
-/* Call: the care team's number, kept on this phone only */
-.team{display:flex;flex-direction:column;gap:.875rem}
-.team[hidden]{display:none}
-.team-h{font-family:var(--display);font-weight:700;font-size:1.375rem;line-height:1.15;letter-spacing:-.02em}
-.team-p{font-size:.9375rem;line-height:1.45;color:#546172}
-.team-s{font-size:.8125rem;line-height:1.4;color:#546172}
-.team label{font-weight:600;font-size:.875rem;display:flex;flex-direction:column;gap:.375rem}
-.team label em{font-style:normal;font-weight:500;color:#546172}
-.tel-in{height:3.25rem;border-radius:1rem;border:0;box-shadow:inset 0 0 0 2px #C7D0DC;background:#FFFFFF;color:#0B1B2E;font-family:var(--body);font-size:1.25rem;font-weight:600;padding:0 1rem;width:100%;font-variant-numeric:tabular-nums}
-.tel-in:focus{outline:none;box-shadow:inset 0 0 0 2px #2F62D9}
-.card.light .btn.quiet{background:transparent;color:#546172;box-shadow:none}
-.textbtn{border:0;background:transparent;color:#2456C8;font:inherit;font-weight:600;font-size:.875rem;cursor:pointer;padding:.5rem 0;min-height:2.75rem}
-.afterh a{color:#0B1B2E;font-weight:700;font-size:1rem;text-decoration:none;font-variant-numeric:tabular-nums}
 
 /* Caregivers and video placeholders */
 .card ul{margin:0;padding-left:1.2em}
@@ -424,12 +407,3 @@ main{flex:1;display:flex;flex-direction:column}
 .code-err{color:var(--danger);font-size:.875rem;font-weight:700}
 .proto-note{color:var(--muted);font-size:.875rem;line-height:1.45;margin-top:auto;padding:0 .25rem}
 
-/* Call button: terracotta, bottom corner of the column, on every screen but Routine, Call and Welcome.
-   It is sticky, so it floats while you scroll and takes its own space at the end of the page. Text scrolling under it fades
-   into the page colour rather than peeking out around the button. */
-.fab{position:sticky;bottom:0;z-index:5;display:flex;justify-content:flex-end;padding:1.25rem max(16px,env(safe-area-inset-right,0px)) max(24px,calc(env(safe-area-inset-bottom,0px) + 12px)) 16px;pointer-events:none;background:linear-gradient(180deg,transparent 0%,var(--bg) 58%)}
-.fab a{pointer-events:auto;display:inline-flex;align-items:center;gap:.625rem;height:3.5rem;padding:0 1.375rem 0 .5rem;border-radius:1.75rem;background:var(--call);color:#FFFFFF;text-decoration:none;font-weight:600;font-size:1rem;box-shadow:var(--call-shadow);transition:transform .2s,filter .2s}
-.fab .ph-ico{width:2.5rem;height:2.5rem;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center}
-.fab .ph-ico svg.ic{width:1.25rem;height:1.25rem}
-@media (hover:hover){.fab a:hover{filter:brightness(1.06);transform:translateY(-1px)}}
-.fab a:focus-visible{outline-color:var(--fg);outline-offset:3px}
