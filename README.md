@@ -30,7 +30,9 @@ is kept in the visitor's own browser (`localStorage`) and clears each day.
   screens say to contact your care team, as plain text.
 - `css/site.css`, `js/app.js` — styles and behaviour
 - `img/` — product photos cropped from the printed guide
-- `guide/` — the patient information guide as a PDF (English, v1.11); translations go here too
+- `guide/` — the patient information guide as PDFs (v1.11), one per language: English (`en`),
+  Bengali (`bn`), Simplified Chinese (`zh-hans`), Greek (`el`), Hindi (`hi`), Korean (`ko`),
+  Russian (`ru`) and Spanish (`es`). Each has a row on the Guide screen.
 - `CNAME` — custom domain for GitHub Pages
 - `404.html` — sends unknown paths back to `/`
 
@@ -39,7 +41,6 @@ is kept in the visitor's own browser (`localStorage`) and clears each day.
 - Rash photos for mild, moderate and severe, and what to do for each (from the dermatology team;
   the Rash screen shows labelled placeholders)
 - The how-to video (the Video screen shows "coming soon")
-- The guide's six translations (add each PDF under `guide/` and a row on the Guide screen)
 - Access codes and usage analytics — these belong to the IRB-approved study build
 
 `js/app.js` has a `GATE` flag; set it to `true` to show the access-code screen.
